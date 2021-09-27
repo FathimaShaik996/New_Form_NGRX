@@ -1,0 +1,140 @@
+<h1>Passenger details form</h1>
+<div class="passengerForm">
+  <form [formGroup]="passengerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastname" class="form-control" />
+      <div
+        *ngIf="
+          (submitted &&
+            this.passengerForm.get('lastname').hasError('required')) ||
+          this.passengerForm.get('lastname').touched ||
+          this.passengerForm.get('lastname').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.passengerForm.get('lastname').hasError('required')">
+          Lastname is required
+        </div>
+        <div *ngIf="this.passengerForm.get('lastname').hasError('maxlength')">
+          Lastname Should be lessthan 10 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" formControlName="firstname" class="form-control" />
+      <div
+        *ngIf="
+          (submitted &&
+            this.passengerForm.get('firstname').hasError('required')) ||
+          this.passengerForm.get('firstname').touched ||
+          this.passengerForm.get('firstname').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.passengerForm.get('firstname').hasError('required')">
+          Firstname is required
+        </div>
+        <div *ngIf="this.passengerForm.get('firstname').hasError('maxlength')">
+          Firstname Should be lessthan 12 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <textarea
+        type="text"
+        formControlName="address"
+        class="form-control"
+      ></textarea>
+      <div
+        *ngIf="
+          (submitted &&
+            this.passengerForm.get('address').hasError('required')) ||
+          this.passengerForm.get('address').touched ||
+          this.passengerForm.get('address').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.passengerForm.get('address').hasError('required')">
+          address is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" formControlName="email" class="form-control" />
+      <div
+        *ngIf="
+          (submitted && this.passengerForm.get('email').hasError('required')) ||
+          this.passengerForm.get('email').touched ||
+          this.passengerForm.get('email').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.passengerForm.get('email').hasError('required')">
+          Email is required
+        </div>
+        <div *ngIf="this.passengerForm.get('email').hasError('pattern')">
+          Enter valid Email address
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="text" formControlName="phoneNumber" class="form-control" />
+      <div
+        *ngIf="
+          (submitted &&
+            this.passengerForm.get('phoneNumber').hasError('required')) ||
+          this.passengerForm.get('phoneNumber').touched ||
+          this.passengerForm.get('phoneNumber').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.passengerForm.get('phoneNumber').hasError('required')">
+          PhoneNumber is required
+        </div>
+        <div
+          *ngIf="this.passengerForm.get('phoneNumber').hasError('minlength')"
+        >
+          PhoneNumber Should be greaterthan 8 characters
+        </div>
+        <div
+          *ngIf="this.passengerForm.get('phoneNumber').hasError('maxlength')"
+        >
+          PhoneNumber Should be lessthan 12 characters
+        </div>
+        <!-- <div *ngIf="this.passengerForm.get('phoneNumber').hasError('pattern')">PhoneNumber Should be numbers
+        </div> -->
+      </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" (click)="continue()">Continue</button
+      >&nbsp;&nbsp;
+      <button
+        type="button"
+        (click)="onReset()"
+        class="btn btn-warning float-right"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+<div>
+  <h1>Summary</h1>
+  <div>Last name: {{ passengerData?.lastname }}</div>
+  <div>First name:{{ passengerData?.firstname }}</div>
+  <div>Address:{{ passengerData?.address }}</div>
+  <div>Email:{{ passengerData?.email }}</div>
+  <div>Phone: {{ passengerData?.phoneNumber }}</div>
+</div>

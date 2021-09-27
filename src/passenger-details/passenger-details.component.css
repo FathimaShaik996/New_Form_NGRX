@@ -1,0 +1,12 @@
+.invalid {
+  color: red;
+}
+.is-invalid {
+  border-color: red;
+}
+.passengerForm {
+  padding: 0% 2%;
+}
+.form-group {
+  width: 50%;
+}

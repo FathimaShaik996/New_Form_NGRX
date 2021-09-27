@@ -1,0 +1,93 @@
+<h1>Summary</h1>
+<div>Last name: {{ passengerData?.lastname }}</div>
+<div>First name:{{ passengerData?.firstname }}</div>
+<div>Address:{{ passengerData?.address }}</div>
+<div>Email:{{ passengerData?.email }}</div>
+<div>Phone: {{ passengerData?.phoneNumber }}</div>
+
+<h1>Passenger details form</h1>
+<div class="paymentForm">
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Credit card number </label>
+      <input type="text" formControlName="creditCard" class="form-control" />
+      <div
+        *ngIf="
+          (submitted &&
+            this.paymentForm.get('creditCard').hasError('required')) ||
+          this.paymentForm.get('creditCard').touched ||
+          this.paymentForm.get('creditCard').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.paymentForm.get('creditCard').hasError('required')">
+          Credit card number is required
+        </div>
+        <div *ngIf="this.paymentForm.get('creditCard').hasError('maxlength')">
+          Credit card number Should be 16 characters
+        </div>
+        <div *ngIf="this.paymentForm.get('creditCard').hasError('minlength')">
+          Credit card number Should be 16 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Expiration date </label>
+      <input type="text" formControlName="expiryDate" class="form-control" />
+      <div
+        *ngIf="
+          (submitted &&
+            this.paymentForm.get('expiryDate').hasError('required')) ||
+          this.paymentForm.get('expiryDate').touched ||
+          this.paymentForm.get('expiryDate').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.paymentForm.get('expiryDate').hasError('required')">
+          Expiry Date is required
+        </div>
+        <div *ngIf="this.paymentForm.get('expiryDate').hasError('pattern')">
+          Please enter valid Expiry Date
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>CVA </label>
+      <input type="text" formControlName="cva" class="form-control" />
+      <div
+        *ngIf="
+          (submitted && this.paymentForm.get('cva').hasError('required')) ||
+          this.paymentForm.get('cva').touched ||
+          this.paymentForm.get('cva').dirty
+        "
+        class="invalid"
+      >
+        <div *ngIf="this.paymentForm.get('cva').hasError('required')">
+          CVA is required
+        </div>
+        <div *ngIf="this.paymentForm.get('cva').hasError('maxlength')">
+          CVA number Should be 3 characters
+        </div>
+        <div *ngIf="this.paymentForm.get('cva').hasError('minlength')">
+          CVA number Should be 3 characters
+        </div>
+        <div *ngIf="this.paymentForm.get('cva').hasError('pattern')">
+          please enter valid CVA Number
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save & Continue</button>
+      <button
+        type="button"
+        (click)="onReset()"
+        class="btn btn-warning float-right"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
